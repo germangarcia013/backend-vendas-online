@@ -25,7 +25,6 @@ export class ProductService {
 
     @Inject(forwardRef(() => CategoryService))
     private readonly categoryService: CategoryService,
-
   ) {}
 
   async findAllPage(
@@ -84,7 +83,7 @@ export class ProductService {
 
     const products = await this.productRepository.find(findOptions);
 
-    if (!products || products.length === 0) {
+    if (!products) {
       throw new NotFoundException('Not found products');
     }
 
@@ -96,7 +95,7 @@ export class ProductService {
 
     return this.productRepository.save({
       ...createProduct,
-      descricao: createProduct.descricao
+      descricao: createProduct.descricao,
     });
   }
 
@@ -149,6 +148,4 @@ export class ProductService {
       .groupBy('product.category_id')
       .getRawMany();
   }
-
-
 }
