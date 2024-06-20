@@ -44,7 +44,7 @@ export class CategoryService {
 
     const count = await this.productService.countProdutsByCategoryId();
 
-    if (!categories || categories.length === 0) {
+    if (!categories) {
       throw new NotFoundException('Categories empty');
     }
 
